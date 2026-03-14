@@ -222,41 +222,51 @@
     #projects { background: var(--bg); }
     .projects-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 1.5rem;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 0.875rem;
     }
     .project-card {
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: 12px;
-      padding: 2rem;
+      padding: 1rem;
       transition: transform 0.2s, box-shadow 0.2s;
     }
     .project-card:hover {
       transform: translateY(-3px);
       box-shadow: 0 8px 24px rgba(0,0,0,0.06);
     }
+    .project-card-link {
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      cursor: pointer;
+    }
+    .project-card-link:hover h3 {
+      color: var(--accent);
+    }
     .project-num {
-      font-size: 0.75rem;
+      font-size: 0.7rem;
       letter-spacing: 0.08em;
       color: var(--accent);
       font-weight: 500;
-      margin-bottom: 1rem;
+      margin-bottom: 0.3rem;
     }
     .project-card h3 {
       font-family: 'DM Serif Display', serif;
-      font-size: 1.25rem;
-      margin-bottom: 0.75rem;
-      line-height: 1.3;
+      font-size: 1.05rem;
+      margin-bottom: 0.5rem;
+      line-height: 1.2;
+      transition: color 0.2s;
     }
     .project-card p {
       font-size: 0.9rem;
       color: var(--muted);
-      line-height: 1.7;
+      line-height: 1.5;
     }
     .project-tags {
-      display: flex; flex-wrap: wrap; gap: 0.5rem;
-      margin-top: 1.25rem;
+      display: flex; flex-wrap: wrap; gap: 0.3rem;
+      margin-top: 0.6rem;
     }
     .tag {
       font-size: 0.75rem;
@@ -304,6 +314,127 @@
       border-radius: 10px;
       font-size: 0.9rem;
       color: var(--accent);
+    }
+
+    /* SKILLS */
+    .skills-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .skill-tile {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 0.9rem 1.5rem;
+      transition: transform 0.2s, box-shadow 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+    .skill-tile:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+    }
+    .skill-tile h3 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1rem;
+      color: var(--text);
+      line-height: 1.3;
+      flex-shrink: 0;
+      min-width: 180px;
+    }
+    .skill-items {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      flex: 1;
+    }
+    .skill-badge {
+      font-size: 0.85rem;
+      padding: 6px 13px;
+      background: var(--accent-light);
+      color: var(--accent);
+      border-radius: 20px;
+      font-weight: 500;
+      border: 1px solid rgba(45, 90, 61, 0.1);
+      white-space: nowrap;
+    }
+
+    /* EXPERIENCE */
+    .experience-list { display: flex; flex-direction: column; gap: 0; }
+    .experience-item {
+      padding: 1.5rem 0;
+      border-bottom: 1px solid var(--border);
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .experience-item:first-child { border-top: 1px solid var(--border); }
+    .experience-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+    .experience-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.15rem;
+      color: var(--text);
+      margin-bottom: 0.3rem;
+      line-height: 1.3;
+    }
+    .experience-meta {
+      font-size: 0.85rem;
+      color: var(--accent);
+      font-weight: 500;
+      letter-spacing: 0.02em;
+    }
+    .experience-toggle {
+      flex-shrink: 0;
+      width: 24px;
+      height: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent);
+      font-size: 1.2rem;
+      font-weight: bold;
+      transition: all 0.2s;
+    }
+    .experience-item.expanded .experience-toggle {
+      color: var(--accent);
+    }
+    .experience-description {
+      font-size: 0.95rem;
+      color: var(--muted);
+      line-height: 1.7;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease, margin-top 0.3s ease;
+      margin-top: 0;
+    }
+    .experience-item.expanded .experience-description {
+      max-height: 500px;
+      margin-top: 1rem;
+    }
+    .experience-description ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+    .experience-description li {
+      padding-left: 1.5rem;
+      position: relative;
+    }
+    .experience-description li::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-weight: bold;
     }
 
     /* CONTACT */
@@ -497,18 +628,22 @@
 
         <div class="project-card">
           <div class="project-num">01</div>
-          <h3>Data Center Design &amp; Sustainability in Low Earth Orbit</h3>
-          <p>Exploring how to design energy-efficient, sustainable data center infrastructure for Low Earth Orbit — addressing cooling, power, and the unique constraints of space-based computing.</p>
+          <a href="projects/leo-data-center.html" class="project-card-link">
+            <h3>Data Center Design &amp; Sustainability in Low Earth Orbit</h3>
+          </a>
+          <p>Modelling carbon emissions of launching data centers in Low Earth Orbit for AI workloads.</p>
           <div class="project-tags">
-            <span class="tag">Space Systems</span>
+            <span class="tag">Data Modelling</span>
+            <span class="tag">Data Centers</span>
             <span class="tag">Sustainability</span>
-            <span class="tag">Infrastructure</span>
           </div>
         </div>
 
         <div class="project-card">
           <div class="project-num">02</div>
-          <h3>Carbon Accounting</h3>
+          <a href="projects/carbon-accounting.html" class="project-card-link">
+            <h3>Carbon Accounting</h3>
+          </a>
           <p>Developing frameworks and data-driven methods to accurately measure, track, and report carbon emissions — enabling organizations to make informed decisions toward net-zero goals.</p>
           <div class="project-tags">
             <span class="tag">Climate</span>
@@ -519,7 +654,9 @@
 
         <div class="project-card">
           <div class="project-num">03</div>
-          <h3>High Performance Computing</h3>
+          <a href="projects/high-performance-computing.html" class="project-card-link">
+            <h3>High Performance Computing</h3>
+          </a>
           <p>Investigating the efficiency and scalability of HPC systems, with a focus on workload optimization and understanding the environmental footprint of large-scale computation.</p>
           <div class="project-tags">
             <span class="tag">HPC</span>
@@ -539,8 +676,73 @@
     <div class="section-inner">
       <p class="section-label">Career</p>
       <h2>Professional Experience</h2>
-      <div class="blog-grid">
-        <p style="color: var(--muted); padding: 2rem 0; text-align: center;">Coming soon — a detailed look at my professional journey in data science and engineering.</p>
+      <div class="experience-list" id="experienceList">
+        
+        <div class="experience-item">
+          <div class="experience-header">
+            <div>
+              <div class="experience-title">Associate Instructor (Data Structures)</div>
+              <div class="experience-meta">Luddy School of Informatics · Aug 2025 – Present</div>
+            </div>
+            <div class="experience-toggle">+</div>
+          </div>
+          <div class="experience-description">
+            <ul>
+              <li>Led weekly Java data structures labs for ∼30 undergraduate students per section, guiding hands-on coding and debugging exercises</li>
+              <li>Provided one-on-one debugging support to help students resolve programming errors and improve problem-solving in core data structures topics</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="experience-item">
+          <div class="experience-header">
+            <div>
+              <div class="experience-title">Sustainability Data Intern (Mckinney Climate Fellow)</div>
+              <div class="experience-meta">Indiana Toll Road · May 2025 – Aug 2025</div>
+            </div>
+            <div class="experience-toggle">+</div>
+          </div>
+          <div class="experience-description">
+            <ul>
+              <li>Identified and resolved data quality issues affecting 16% of sustainability reporting records, reducing discrepancies to 2% and improving the reliability of sustainability reporting</li>
+              <li>Built a carbon emissions tracking model and analyzed solar generation data across infrastructure assets to support the company's 2030 emissions-reduction strategy</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="experience-item">
+          <div class="experience-header">
+            <div>
+              <div class="experience-title">Research Assistant (Data Science)</div>
+              <div class="experience-meta">Luddy School of Informatics · May 2025 – Aug 2025</div>
+            </div>
+            <div class="experience-toggle">+</div>
+          </div>
+          <div class="experience-description">
+            <ul>
+              <li>Processed and analyzed 175+ GB of satellite precipitation data spanning 24 years using HPC systems to evaluate long-term climate trends across multiple regions</li>
+              <li>Compared satellite precipitation outputs with 3 benchmark datasets across 7 U.S. regions to assess how terrain differences affect the suitability of satellite data products</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="experience-item">
+          <div class="experience-header">
+            <div>
+              <div class="experience-title">Research Associate</div>
+              <div class="experience-meta">Center for Economics Research in Pakistan (CERP) · July 2023 – June 2024</div>
+            </div>
+            <div class="experience-toggle">+</div>
+          </div>
+          <div class="experience-description">
+            <ul>
+              <li>Managed data collection and survey design for a large-scale urban recycling study involving 3 stakeholder groups</li>
+              <li>Conducted pilot surveys in 2 Lahore towns to refine RCT design and improve measurement of recycling behavior</li>
+              <li>Analyzed operational data with Lahore Waste Management Company to assess pilot feasibility and scale-up potential across 9 towns</li>
+            </ul>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
@@ -552,8 +754,95 @@
     <div class="section-inner">
       <p class="section-label">Expertise</p>
       <h2>Technical Skills</h2>
+      <div class="skills-grid">
+        
+        <div class="skill-tile">
+          <h3>Programming Languages</h3>
+          <div class="skill-items">
+            <span class="skill-badge">Python</span>
+            <span class="skill-badge">Java</span>
+            <span class="skill-badge">SQL</span>
+            <span class="skill-badge">Stata</span>
+            <span class="skill-badge">Bash</span>
+          </div>
+        </div>
+
+        <div class="skill-tile">
+          <h3>Data Analysis & BI</h3>
+          <div class="skill-items">
+            <span class="skill-badge">Pandas</span>
+            <span class="skill-badge">NumPy</span>
+            <span class="skill-badge">Tableau</span>
+            <span class="skill-badge">Power BI</span>
+          </div>
+        </div>
+
+        <div class="skill-tile">
+          <h3>AI & Machine Learning</h3>
+          <div class="skill-items">
+            <span class="skill-badge">Scikit-learn</span>
+            <span class="skill-badge">TensorFlow</span>
+            <span class="skill-badge">PyTorch</span>
+            <span class="skill-badge">Regression</span>
+            <span class="skill-badge">Classification</span>
+          </div>
+        </div>
+
+        <div class="skill-tile">
+          <h3>Big Data</h3>
+          <div class="skill-items">
+            <span class="skill-badge">Apache Spark</span>
+            <span class="skill-badge">Hadoop</span>
+            <span class="skill-badge">HPC Systems</span>
+            <span class="skill-badge">Distributed Computing</span>
+          </div>
+        </div>
+
+        <div class="skill-tile">
+          <h3>Database & Storage</h3>
+          <div class="skill-items">
+            <span class="skill-badge">PostgreSQL</span>
+            <span class="skill-badge">MySQL</span>
+            <span class="skill-badge">BigQuery</span>
+            <span class="skill-badge">MongoDB</span>
+            <span class="skill-badge">Data Warehousing</span>
+          </div>
+        </div>
+
+        <div class="skill-tile">
+          <h3>Cloud & DevOps</h3>
+          <div class="skill-items">
+            <span class="skill-badge">AWS</span>
+            <span class="skill-badge">GCP</span>
+            <span class="skill-badge">Docker/Kubernetes</span>
+            <span class="skill-badge">Git</span>
+            <span class="skill-badge">Linux</span>
+          </div>
+        </div>
+
+        <div class="skill-tile">
+          <h3>GenAI & LLMs</h3>
+          <div class="skill-items">
+            <span class="skill-badge">LLM Integration</span>
+            <span class="skill-badge">Prompt Engineering</span>
+            <span class="skill-badge">RAG Systems</span>
+            <span class="skill-badge">API Integration</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- EXTRACURRICULARS -->
+  <section id="extracurriculars">
+    <div class="section-inner">
+      <p class="section-label">Beyond Work</p>
+      <h2>Extracurriculars</h2>
       <div class="blog-grid">
-        <p style="color: var(--muted); padding: 2rem 0; text-align: center;">Coming soon — a breakdown of my technical expertise, tools, and programming languages.</p>
+        <p style="color: var(--muted); padding: 2rem 0; text-align: center;">Coming soon — a glimpse into my interests, activities, and involvement beyond my professional work.</p>
       </div>
     </div>
   </section>
@@ -580,19 +869,6 @@
       <h2>Certifications</h2>
       <div class="blog-grid">
         <p style="color: var(--muted); padding: 2rem 0; text-align: center;">Coming soon — my professional certifications, courses, and credentials in data science and related fields.</p>
-      </div>
-    </div>
-  </section>
-
-  <hr class="divider" />
-
-  <!-- EXTRACURRICULARS -->
-  <section id="extracurriculars">
-    <div class="section-inner">
-      <p class="section-label">Beyond Work</p>
-      <h2>Extracurriculars</h2>
-      <div class="blog-grid">
-        <p style="color: var(--muted); padding: 2rem 0; text-align: center;">Coming soon — a glimpse into my interests, activities, and involvement beyond my professional work.</p>
       </div>
     </div>
   </section>
@@ -699,3 +975,15 @@
   <footer>
     <p>&copy; 2025 Nisha Sarwar — Built with care &amp; curiosity.</p>
   </footer>
+
+  <script>
+    // Experience expandable items
+    const experienceItems = document.querySelectorAll('.experience-item');
+    experienceItems.forEach(item => {
+      const toggle = item.querySelector('.experience-toggle');
+      item.addEventListener('click', function() {
+        this.classList.toggle('expanded');
+        toggle.textContent = this.classList.contains('expanded') ? '−' : '+';
+      });
+    });
+  </script>

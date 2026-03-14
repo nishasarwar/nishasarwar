@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Data Center Design & Sustainability in Low Earth Orbit — Nisha Sarwar</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #faf9f7;
+      --surface: #ffffff;
+      --text: #1a1917;
+      --muted: #6b6860;
+      --accent: #2d5a3d;
+      --accent-light: #e8f0ea;
+      --border: #e4e2dc;
+      --nav-h: 64px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 16px;
+      line-height: 1.7;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      height: var(--nav-h);
+      background: rgba(250,249,247,0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center;
+      padding: 0 2rem;
+      z-index: 100;
+      justify-content: space-between;
+    }
+    .nav-name {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.2rem;
+      letter-spacing: -0.01em;
+      color: var(--text);
+      text-decoration: none;
+    }
+    .nav-back {
+      font-size: 0.875rem;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-back:hover { color: var(--text); }
+
+    /* MAIN CONTENT */
+    main {
+      min-height: 100vh;
+      padding: calc(var(--nav-h) + 2rem) 2rem 4rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .project-header {
+      margin-bottom: 3rem;
+    }
+
+    .project-tag {
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: var(--accent-light);
+      padding: 6px 16px;
+      border-radius: 20px;
+      font-weight: 500;
+      display: inline-block;
+      margin-bottom: 1rem;
+    }
+
+    h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 2.5rem;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      margin-bottom: 1.5rem;
+    }
+
+    .project-summary {
+      font-size: 1.1rem;
+      color: var(--muted);
+      line-height: 1.8;
+      margin-bottom: 2rem;
+    }
+
+    .project-meta {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      padding: 2rem;
+      background: var(--accent-light);
+      border-radius: 12px;
+      margin-bottom: 3rem;
+    }
+
+    .meta-item {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .meta-label {
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+    }
+
+    .meta-value {
+      font-size: 0.95rem;
+      color: var(--text);
+    }
+
+    .project-content {
+      display: flex;
+      flex-direction: column;
+      gap: 3rem;
+    }
+
+    .section {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .section h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.6rem;
+      letter-spacing: -0.01em;
+      color: var(--text);
+      margin-bottom: 0.5rem;
+    }
+
+    .section p {
+      color: var(--muted);
+      line-height: 1.8;
+    }
+
+    .section ul {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      margin: 0 0 0 0;
+    }
+
+    .section li {
+      color: var(--muted);
+      line-height: 1.8;
+      padding-left: 1.5rem;
+      position: relative;
+    }
+
+    .section li::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-weight: bold;
+    }
+
+    .tags-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-top: 1rem;
+    }
+
+    .tag {
+      font-size: 0.75rem;
+      padding: 6px 14px;
+      background: var(--accent-light);
+      color: var(--accent);
+      border-radius: 20px;
+      font-weight: 500;
+    }
+
+    .cta-row {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-top: 3rem;
+    }
+
+    .btn {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem;
+      padding: 10px 22px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.2s;
+      cursor: pointer;
+      display: inline-block;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+      border: none;
+    }
+
+    .btn-primary:hover { background: #214830; }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+
+    .btn-outline:hover { border-color: var(--text); background: var(--surface); }
+
+    hr { border: none; border-top: 1px solid var(--border); margin: 3rem 0; }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+      margin-top: 4rem;
+    }
+
+    @media (max-width: 640px) {
+      h1 { font-size: 1.8rem; }
+      .project-meta { grid-template-columns: 1fr; gap: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="../index.html#projects" class="nav-name">← Back to Projects</a>
+  </nav>
+
+  <main>
+    <header class="project-header">
+      <span class="project-tag">Space Systems & Sustainability</span>
+      <h1>Data Center Design & Sustainability in Low Earth Orbit</h1>
+      <p class="project-summary">
+        Exploring how to design energy-efficient, sustainable data center infrastructure for Low Earth Orbit — addressing cooling, power, and the unique constraints of space-based computing.
+      </p>
+    </header>
+
+    <div class="project-meta">
+      <div class="meta-item">
+        <div class="meta-label">Status</div>
+        <div class="meta-value">In Progress</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Timeline</div>
+        <div class="meta-value">2024 - Present</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Role</div>
+        <div class="meta-value">Graduate Researcher</div>
+      </div>
+    </div>
+
+    <div class="project-content">
+      
+      <section class="section">
+        <h2>Overview</h2>
+        <p>
+          As the demand for computing power grows globally, Low Earth Orbit (LEO) presents both an opportunity and a challenge. This research explores the feasibility and implications of designing sustainable data center infrastructure for space-based systems. With unique constraints around power, cooling, and radiation, space-based computing requires fundamentally different design principles than terrestrial data centers.
+        </p>
+      </section>
+
+      <section class="section">
+        <h2>Key Research Questions</h2>
+        <ul>
+          <li>How can we design thermal management systems optimized for the vacuum of space?</li>
+          <li>What are the power efficiency requirements for sustainable LEO data centers?</li>
+          <li>How do radiation effects impact hardware longevity and operational costs?</li>
+          <li>What is the carbon footprint of launching and maintaining LEO infrastructure?</li>
+          <li>How can we minimize environmental impact across the full lifecycle?</li>
+        </ul>
+      </section>
+
+      <section class="section">
+        <h2>Technical Approach</h2>
+        <p>
+          Our methodology combines systems analysis, thermodynamic modeling, and lifecycle assessment to evaluate LEO data center designs. We examine:
+        </p>
+        <ul>
+          <li>Thermal radiator designs suitable for space environments</li>
+          <li>Power generation and storage systems (solar, battery, fuel cells)</li>
+          <li>Hardware selection and redundancy strategies</li>
+          <li>Satellite constellation coordination and data routing</li>
+          <li>Environmental impact metrics across deployment and operation</li>
+        </ul>
+      </section>
+
+      <section class="section">
+        <h2>Preliminary Findings</h2>
+        <p>
+          Early results indicate that while LEO data centers offer certain efficiency advantages (passive cooling through radiation), the environmental cost of launch operations and hardware replacement requirements presents significant challenges. A holistic assessment is essential for determining sustainability metrics.
+        </p>
+      </section>
+
+      <section class="section">
+        <h2>Technologies & Skills</h2>
+        <div class="tags-container">
+          <span class="tag">Systems Modeling</span>
+          <span class="tag">Thermal Analysis</span>
+          <span class="tag">Lifecycle Assessment</span>
+          <span class="tag">Space Systems</span>
+          <span class="tag">Python</span>
+          <span class="tag">Data Analysis</span>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>Collaborators & References</h2>
+        <p>
+          This research is conducted under the guidance of faculty advisors at Indiana University Bloomington's School of Informatics, Computing, and Engineering, in collaboration with industry partners interested in space-based infrastructure.
+        </p>
+      </section>
+
+      <hr />
+
+      <div class="cta-row">
+        <a href="../index.html#projects" class="btn btn-primary">Back to Projects</a>
+        <a href="../index.html#contact" class="btn btn-outline">Get in Touch</a>
+      </div>
+
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Nisha Sarwar — Building sustainable computing infrastructure.</p>
+  </footer>
+
+</body>
+</html>
