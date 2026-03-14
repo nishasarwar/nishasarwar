@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nisha Sarwar — Data Scientist</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #faf9f7;
+      --surface: #ffffff;
+      --text: #1a1917;
+      --muted: #6b6860;
+      --accent: #2d5a3d;
+      --accent-light: #e8f0ea;
+      --border: #e4e2dc;
+      --nav-h: 64px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 16px;
+      line-height: 1.7;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      height: var(--nav-h);
+      background: rgba(250,249,247,0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center;
+      padding: 0 2rem;
+      z-index: 100;
+      justify-content: space-between;
+    }
+    .nav-name {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.2rem;
+      letter-spacing: -0.01em;
+      color: var(--text);
+      text-decoration: none;
+    }
+    .nav-links { display: flex; gap: 2rem; }
+    .nav-links a {
+      font-size: 0.875rem;
+      color: var(--muted);
+      text-decoration: none;
+      letter-spacing: 0.02em;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--text); }
+
+    /* HERO */
+    #hero {
+      min-height: 100vh;
+      display: flex; align-items: center;
+      padding: calc(var(--nav-h) + 4rem) 2rem 4rem;
+      max-width: 900px; margin: 0 auto;
+    }
+    .hero-inner { max-width: 680px; }
+    .hero-tag {
+      display: inline-block;
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: var(--accent-light);
+      padding: 4px 12px;
+      border-radius: 20px;
+      margin-bottom: 1.5rem;
+      font-weight: 500;
+    }
+    h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2.8rem, 7vw, 5rem);
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      margin-bottom: 1.5rem;
+      color: var(--text);
+    }
+    h1 em {
+      font-style: italic;
+      color: var(--accent);
+    }
+    .hero-bio {
+      font-size: 1.1rem;
+      color: var(--muted);
+      max-width: 540px;
+      margin-bottom: 2.5rem;
+      line-height: 1.8;
+    }
+    .hero-photo-placeholder {
+      width: 96px; height: 96px;
+      border-radius: 50%;
+      background: var(--accent-light);
+      border: 3px solid var(--accent);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'DM Serif Display', serif;
+      font-size: 2rem;
+      color: var(--accent);
+      margin-bottom: 2rem;
+      overflow: hidden;
+    }
+    .hero-photo-placeholder img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: none;
+    }
+    .hero-badges {
+      display: flex; flex-wrap: wrap; gap: 0.75rem;
+      margin-bottom: 2.5rem;
+    }
+    .badge {
+      font-size: 0.8rem;
+      padding: 6px 14px;
+      border-radius: 20px;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      background: var(--surface);
+    }
+    .cta-row { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem;
+      padding: 10px 22px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.2s;
+      cursor: pointer;
+      display: inline-block;
+    }
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+      border: none;
+    }
+    .btn-primary:hover { background: #214830; }
+    .btn-outline {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+    .btn-outline:hover { border-color: var(--text); background: var(--surface); }
+
+    /* SECTIONS */
+    section { padding: 5rem 2rem; }
+    .section-inner { max-width: 900px; margin: 0 auto; }
+    .section-label {
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+    }
+    h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      letter-spacing: -0.02em;
+      margin-bottom: 3rem;
+      line-height: 1.2;
+    }
+    .divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 0;
+    }
+
+    /* ABOUT */
+    #about { background: var(--surface); }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+    .about-text p { color: var(--muted); margin-bottom: 1rem; }
+    .about-text p:last-child { margin-bottom: 0; }
+    .about-facts { }
+    .fact-item {
+      padding: 1.25rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .fact-item:first-child { border-top: 1px solid var(--border); }
+    .fact-label {
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 500;
+      margin-bottom: 0.3rem;
+    }
+    .fact-value { font-size: 0.95rem; color: var(--text); }
+
+    /* PROJECTS */
+    #projects { background: var(--bg); }
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+    }
+    .project-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2rem;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .project-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+    }
+    .project-num {
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      color: var(--accent);
+      font-weight: 500;
+      margin-bottom: 1rem;
+    }
+    .project-card h3 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.25rem;
+      margin-bottom: 0.75rem;
+      line-height: 1.3;
+    }
+    .project-card p {
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+    .project-tags {
+      display: flex; flex-wrap: wrap; gap: 0.5rem;
+      margin-top: 1.25rem;
+    }
+    .tag {
+      font-size: 0.75rem;
+      padding: 3px 10px;
+      background: var(--accent-light);
+      color: var(--accent);
+      border-radius: 20px;
+      font-weight: 500;
+    }
+
+    /* BLOG */
+    #blog { background: var(--surface); }
+    .blog-grid { display: flex; flex-direction: column; gap: 0; }
+    .blog-post {
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      gap: 2rem;
+      padding: 2rem 0;
+      border-bottom: 1px solid var(--border);
+      text-decoration: none;
+      color: inherit;
+      transition: opacity 0.2s;
+    }
+    .blog-post:first-child { border-top: 1px solid var(--border); }
+    .blog-post:hover { opacity: 0.7; }
+    .blog-date {
+      font-size: 0.8rem;
+      color: var(--muted);
+      padding-top: 4px;
+    }
+    .blog-content h3 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.2rem;
+      margin-bottom: 0.4rem;
+      line-height: 1.3;
+    }
+    .blog-content p {
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+    .blog-coming-soon {
+      margin-top: 2.5rem;
+      padding: 1.5rem 2rem;
+      background: var(--accent-light);
+      border-radius: 10px;
+      font-size: 0.9rem;
+      color: var(--accent);
+    }
+
+    /* CONTACT */
+    #contact { background: var(--bg); }
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+    .contact-intro p { font-size: 1.05rem; color: var(--muted); line-height: 1.8; }
+    .contact-links { display: flex; flex-direction: column; gap: 1rem; }
+    .contact-link {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem 1.25rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      text-decoration: none;
+      color: var(--text);
+      font-size: 0.9rem;
+      transition: all 0.2s;
+    }
+    .contact-link:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+    .contact-icon {
+      width: 36px; height: 36px;
+      background: var(--accent-light);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .contact-icon svg { width: 18px; height: 18px; stroke: var(--accent); fill: none; stroke-width: 1.8; }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 640px) {
+      .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .nav-links { display: none; }
+      .blog-post { grid-template-columns: 1fr; gap: 0.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#hero" class="nav-name">Nisha Sarwar</a>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#blog">Blog</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-inner">
+      <div class="hero-photo-placeholder" id="photo-circle">
+        <!-- Replace the letter below with <img src="your-photo.jpg" alt="Nisha Sarwar"> and remove the letter -->
+        N
+      </div>
+      <div class="hero-tag">Data Scientist</div>
+      <h1>Hi, I'm <em>Nisha</em> Sarwar.</h1>
+      <p class="hero-bio">
+        First-generation student. Graduate researcher at Indiana University Bloomington.
+        Passionate about making data meaningful — from the atmosphere to outer space.
+      </p>
+      <div class="hero-badges">
+        <span class="badge">Indiana University Bloomington</span>
+        <span class="badge">LUMS Alumni</span>
+        <span class="badge">First Gen Student</span>
+        <span class="badge">Bloomington, IN</span>
+      </div>
+      <div class="cta-row">
+        <a href="#projects" class="btn btn-primary">See My Work</a>
+        <a href="#contact" class="btn btn-outline">Get in Touch</a>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="section-inner">
+      <p class="section-label">About Me</p>
+      <h2>My Story</h2>
+      <div class="about-grid">
+        <div class="about-text">
+          <p>
+            I'm a first-generation college student — something I carry with pride. My journey has taken me from Government Post Graduate College for Women in Vehari, to one of Pakistan's most prestigious universities, to a graduate program in the United States.
+          </p>
+          <p>
+            At Indiana University Bloomington, I'm pushing the boundaries of data science — exploring questions at the intersection of sustainability, computing, and our planet's future. My work sits at the crossroads of real-world impact and rigorous research.
+          </p>
+          <p>
+            I believe data is more than numbers — it's a lens for understanding the world and a tool for changing it. Whether it's reducing carbon footprints or designing smarter data infrastructure, I'm motivated by work that matters.
+          </p>
+        </div>
+        <div class="about-facts">
+          <div class="fact-item">
+            <div class="fact-label">Currently</div>
+            <div class="fact-value">Graduate Student, Indiana University Bloomington</div>
+          </div>
+          <div class="fact-item">
+            <div class="fact-label">Undergraduate</div>
+            <div class="fact-value">Lahore University of Management Sciences (LUMS)</div>
+          </div>
+          <div class="fact-item">
+            <div class="fact-label">Intermediate</div>
+            <div class="fact-value">Govt. Post Graduate College for Women, Vehari</div>
+          </div>
+          <div class="fact-item">
+            <div class="fact-label">Interests</div>
+            <div class="fact-value">Sustainability, HPC, Space Systems, Carbon Accounting</div>
+          </div>
+          <div class="fact-item">
+            <div class="fact-label">Based in</div>
+            <div class="fact-value">Bloomington, Indiana, USA</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="section-inner">
+      <p class="section-label">Projects</p>
+      <h2>Selected Work</h2>
+      <div class="projects-grid">
+
+        <div class="project-card">
+          <div class="project-num">01</div>
+          <h3>Data Center Design &amp; Sustainability in Low Earth Orbit</h3>
+          <p>Exploring how to design energy-efficient, sustainable data center infrastructure for Low Earth Orbit — addressing cooling, power, and the unique constraints of space-based computing.</p>
+          <div class="project-tags">
+            <span class="tag">Space Systems</span>
+            <span class="tag">Sustainability</span>
+            <span class="tag">Infrastructure</span>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-num">02</div>
+          <h3>Carbon Accounting</h3>
+          <p>Developing frameworks and data-driven methods to accurately measure, track, and report carbon emissions — enabling organizations to make informed decisions toward net-zero goals.</p>
+          <div class="project-tags">
+            <span class="tag">Climate</span>
+            <span class="tag">Data Science</span>
+            <span class="tag">Policy</span>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-num">03</div>
+          <h3>High Performance Computing</h3>
+          <p>Investigating the efficiency and scalability of HPC systems, with a focus on workload optimization and understanding the environmental footprint of large-scale computation.</p>
+          <div class="project-tags">
+            <span class="tag">HPC</span>
+            <span class="tag">Systems</span>
+            <span class="tag">Optimization</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- BLOG -->
+  <section id="blog">
+    <div class="section-inner">
+      <p class="section-label">Blog</p>
+      <h2>Writing &amp; Reflections</h2>
+      <div class="blog-grid">
+
+        <a href="#" class="blog-post">
+          <div class="blog-date">March 2025</div>
+          <div class="blog-content">
+            <h3>What Does It Mean to Be First Gen?</h3>
+            <p>Navigating academia, identity, and ambition as a first-generation student — from Vehari to Bloomington.</p>
+          </div>
+        </a>
+
+        <a href="#" class="blog-post">
+          <div class="blog-date">February 2025</div>
+          <div class="blog-content">
+            <h3>Why I Think About Carbon in Data Centers</h3>
+            <p>The internet has a carbon footprint, and it's growing. Here's why this problem fascinates me and what we can do about it.</p>
+          </div>
+        </a>
+
+      </div>
+      <div class="blog-coming-soon">
+        More posts coming soon — I'll be writing about data science, sustainability, and my journey as a researcher.
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="section-inner">
+      <p class="section-label">Contact</p>
+      <h2>Let's Connect</h2>
+      <div class="contact-grid">
+        <div class="contact-intro">
+          <p>
+            Whether you're a researcher, recruiter, or someone who shares a passion for data and sustainability — I'd love to hear from you. Feel free to reach out via any of the links below.
+          </p>
+        </div>
+        <div class="contact-links">
+
+          <!-- EMAIL: replace href with mailto:your@email.com -->
+          <a href="mailto:your@email.com" class="contact-link">
+            <div class="contact-icon">
+              <svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,13 22,4"/></svg>
+            </div>
+            Email Me
+          </a>
+
+          <!-- LINKEDIN: replace # with your LinkedIn URL -->
+          <a href="https://linkedin.com/in/nishasarwar" target="_blank" class="contact-link">
+            <div class="contact-icon">
+              <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="4"/><line x1="8" y1="11" x2="8" y2="17"/><line x1="8" y1="8" x2="8" y2="8.5"/><path d="M12 11v6M12 11a3 3 0 0 1 6 0v6"/></svg>
+            </div>
+            LinkedIn
+          </a>
+
+          <!-- GITHUB: replace # with your GitHub URL -->
+          <a href="https://github.com/nishasarwar" target="_blank" class="contact-link">
+            <div class="contact-icon">
+              <svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+            </div>
+            GitHub
+          </a>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Nisha Sarwar — Built with care &amp; curiosity.</p>
+  </footer>
+
+</body>
+</html>
